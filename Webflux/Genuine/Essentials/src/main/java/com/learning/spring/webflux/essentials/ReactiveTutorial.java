@@ -52,6 +52,20 @@ public class ReactiveTutorial {
         // return flux.skipWhile(integer -> integer < 10).log();
         return flux.skipUntil(integer -> integer == 30).log();
     }
+    private Flux<Integer> testConcat() {
+        Flux<Integer> flux1 = Flux.range(1, 20)
+                .delayElements(Duration.ofMillis(100));
+        Flux<Integer> flux2 = Flux.range(100, 20)
+                .delayElements(Duration.ofMillis(100));
+        return Flux.concat(flux1, flux2).log();
+    }
+    private Flux<Integer> testMerge() {
+        Flux<Integer> flux1 = Flux.range(1, 20)
+                .delayElements(Duration.ofMillis(500));
+        Flux<Integer> flux2 = Flux.range(100, 20)
+                .delayElements(Duration.ofMillis(500));
+        return Flux.merge(flux1, flux2).log();
+    }
     public static void main(String[] args) {
         ReactiveTutorial reactiveTutorial = new ReactiveTutorial();
         System.out.println("Mono Just");
@@ -73,7 +87,7 @@ public class ReactiveTutorial {
         System.out.println("Flux Skip Duration");
         reactiveTutorial.testSkipDuration().subscribe(System.out::println);
         try {
-            Thread.sleep(10_000);
+            Thread.sleep(15_000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -81,5 +95,19 @@ public class ReactiveTutorial {
         reactiveTutorial.testSkipLast().subscribe(System.out::println);
         System.out.println("Flux Skip Complex");
         reactiveTutorial.testSkipComplex().subscribe(System.out::println);
+        System.out.println("Flux Concat");
+        reactiveTutorial.testConcat().subscribe(System.out::println);
+        try {
+            Thread.sleep(10_000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("Flux Merge");
+        reactiveTutorial.testMerge().subscribe(System.out::println);
+        try {
+            Thread.sleep(10_000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
