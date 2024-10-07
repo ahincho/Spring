@@ -28,7 +28,10 @@ public class ReactiveTutorial {
     }
     private Flux<String> testFluxFlatMap() {
         Flux<String> flux = Flux.fromIterable(List.of("Java", "Spring", "Spring Webflux")).log();
-        return flux.flatMap(s -> Mono.just(s.toUpperCase()).log());
+        return flux.flatMap(this::addWord);
+    }
+    private Mono<String> addWord(String string) {
+        return Mono.just(String.format("%s Course", string)).log();
     }
     public static void main(String[] args) {
         ReactiveTutorial reactiveTutorial = new ReactiveTutorial();
