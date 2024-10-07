@@ -11,9 +11,13 @@ public class ReactiveTutorial {
     private Mono<Object> testMonoJustOrEmpty() {
         return Mono.justOrEmpty(Optional.empty()).log();
     }
+    private Mono<Object> testMonoEmpty() {
+        return Mono.empty();
+    }
     public static void main(String[] args) {
         ReactiveTutorial reactiveTutorial = new ReactiveTutorial();
         reactiveTutorial.testMonoJust().subscribe(System.out::println);
         reactiveTutorial.testMonoJustOrEmpty().subscribe(System.out::println);
+        reactiveTutorial.testMonoEmpty().subscribe(System.out::println);
     }
 }
