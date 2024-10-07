@@ -7,8 +7,8 @@ import java.util.Map;
 
 public class CollectMapExamples {
     private static Mono<Map<Integer, Double>> testCollectMap() {
-        Flux<Integer> flux = Flux.range(1, 10);
-        return flux.collectMap(integer -> integer, integer -> Math.pow(integer, 2.0));
+        Flux<Integer> flux = Flux.range(1, 10).log();
+        return flux.collectMap(integer -> integer, integer -> Math.pow(integer, 2.0)).log();
     }
     public static void main(String[] args) {
         System.out.println("Flux Collect Map");
