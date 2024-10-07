@@ -16,7 +16,7 @@ public class MergeExamples {
         System.out.println("Flux Merge");
         testMerge().subscribe(System.out::println);
         try {
-            Thread.sleep(10_000);
+            Thread.sleep(25_000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
