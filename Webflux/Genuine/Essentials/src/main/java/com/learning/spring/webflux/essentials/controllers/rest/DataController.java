@@ -1,11 +1,9 @@
 package com.learning.spring.webflux.essentials.controllers.rest;
 
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import com.learning.spring.webflux.essentials.models.CustomerDocument;
@@ -20,5 +18,13 @@ public class DataController {
     @PostMapping
     public Mono<CustomerDocument> createOneCustomer(@RequestBody CustomerDocument customerDocument) {
         return this.mongoTemplate.save(customerDocument);
+    }
+    @GetMapping
+    public Flux<CustomerDocument> getAllCustomers() {
+        return this.mongoTemplate.findAll(CustomerDocument.class);
+    }
+    @GetMapping("/{id}")
+    public Mono<CustomerDocument> getOneCustomer(@PathVariable String id) {
+        return this.mongoTemplate.findById(id, CustomerDocument.class);
     }
 }
