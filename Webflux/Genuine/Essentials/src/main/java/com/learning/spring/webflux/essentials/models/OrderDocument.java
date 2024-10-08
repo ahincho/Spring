@@ -13,7 +13,7 @@ public class OrderDocument {
     private Double totalAmount;
     private Double discount;
     public OrderDocument() {}
-    public OrderDocument(String id, String customerId, Double totalAmount, Double discount) {
+    public OrderDocument(String customerId, Double totalAmount, Double discount) {
         this.id = UUID.randomUUID().toString();
         this.customerId = customerId;
         this.totalAmount = totalAmount;
