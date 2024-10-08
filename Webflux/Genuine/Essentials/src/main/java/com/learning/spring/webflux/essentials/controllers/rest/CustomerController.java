@@ -10,9 +10,9 @@ import com.learning.spring.webflux.essentials.models.CustomerDocument;
 
 @RestController
 @RequestMapping("api/v1/customers")
-public class DataController {
+public class CustomerController {
     private final ReactiveMongoTemplate mongoTemplate;
-    public DataController(ReactiveMongoTemplate mongoTemplate) {
+    public CustomerController(ReactiveMongoTemplate mongoTemplate) {
         this.mongoTemplate = mongoTemplate;
     }
     @PostMapping
