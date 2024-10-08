@@ -1,4 +1,4 @@
-package com.learning.spring.webflux.essentials.controllers;
+package com.learning.spring.webflux.essentials.controllers.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
