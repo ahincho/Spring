@@ -11,7 +11,12 @@ public class BackPressureExamples {
                 .log()
                 .concatMap(x -> Mono.delay(Duration.ofMillis(100)));
     }
+    private static Flux<Long> createOverflowFlux() {
+        return Flux.interval(Duration.ofMillis(10))
+                .log()
+                .concatMap(x -> Mono.delay(Duration.ofMillis(100)));
+    }
     public static void main(String[] args) {
-        createNoOverflowFlux().blockLast();
+        createOverflowFlux().blockLast();
     }
 }
