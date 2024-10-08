@@ -16,6 +16,7 @@ public class MongoDatabaseConfiguration extends AbstractReactiveMongoConfigurati
     }
     @Bean
     public ReactiveMongoTemplate reactiveMongoTemplate() {
+        System.out.println(getDatabaseName());
         return new ReactiveMongoTemplate(mongoClient(), getDatabaseName());
     }
     @Override
