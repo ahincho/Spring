@@ -17,14 +17,14 @@ public class DataController {
     }
     @PostMapping
     public Mono<CustomerDocument> createOneCustomer(@RequestBody CustomerDocument customerDocument) {
-        return this.mongoTemplate.save(customerDocument);
+        return this.mongoTemplate.save(customerDocument).log();
     }
     @GetMapping
     public Flux<CustomerDocument> getAllCustomers() {
-        return this.mongoTemplate.findAll(CustomerDocument.class);
+        return this.mongoTemplate.findAll(CustomerDocument.class).log();
     }
     @GetMapping("/{id}")
     public Mono<CustomerDocument> getOneCustomer(@PathVariable String id) {
-        return this.mongoTemplate.findById(id, CustomerDocument.class);
+        return this.mongoTemplate.findById(id, CustomerDocument.class).log();
     }
 }
